@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+  var last = CGPoint.zero
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,11 +34,17 @@ class ViewController: UIViewController {
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     guard let touch = touches.first else { return }
     let loc = touch.location(in: view)
-    print("touchMoved", loc.x, loc.y)
-    let rc = CGRect(origin: loc, size: .zero).insetBy(dx: -10, dy: -10)
+    let (dx, dy) = (loc.x-last.x, loc.y-last.y)
+    let distance = sqrt(dx*dx + dy*dy)
+    let radius:CGFloat = 400.0 / (10.0 + distance)
+    let rc = CGRect(origin: loc, size: .zero).insetBy(dx: -radius, dy: -radius)
     let subview = UIView(frame: rc)
     subview.backgroundColor = UIColor.red
+    subview.layer.cornerRadius = radius
+    subview.layer.masksToBounds = true
     view.addSubview(subview)
+    
+    last = loc
   }
   
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
