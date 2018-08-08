@@ -28,7 +28,8 @@ class ViewController: UIViewController {
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    print("touchBegan")
+    guard let touch = touches.first else { return }
+    last = touch.location(in: view)
   }
 
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
