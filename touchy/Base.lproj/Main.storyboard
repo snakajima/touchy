@@ -37,7 +37,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="pz3-fM-tWa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Xxf-gw-WIR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Xxf-gw-WIR">
+                            <connections>
+                                <action selector="clear:" destination="BYZ-38-t0r" id="QXx-ud-AHZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
